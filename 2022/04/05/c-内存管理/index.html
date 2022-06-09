@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      Archives2022 - Hexo
+      c++内存管理 - Hexo
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -27,6 +27,11 @@
 </head>
   <body>
     <canvas id='pagemap'></canvas>
+    
+    <div id="post-toc" class="animated hiddenToc hide">
+      <span class="title">Toc</span>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#malloc"><span class="toc-text">malloc()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#calloc"><span class="toc-text">calloc()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#size-t"><span class="toc-text">size_t</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new"><span class="toc-text">new()</span></a></li></ol>
+    </div>
     
     <div id="fixed-menu-wrap">
       <span class="iconfont icon-sousuo search-box menu-reset"></span>
@@ -57,27 +62,27 @@
       <span class="iconfont icon-close"></span>
       <div class="nav">
         
-        <a href="../../index.html" class="">
+        <a href="../../../../index.html" class="">
           主页
         </a>
         
-        <a href="../../archives" class="current">
+        <a href="../../../../archives" class="">
           归档
         </a>
         
-        <a href="../../categories" class="">
+        <a href="../../../../categories" class="">
           分类
         </a>
         
-        <a href="../../tags" class="">
+        <a href="../../../../tags" class="">
           标签
         </a>
         
-        <a href="../../friends" class="">
+        <a href="../../../../friends" class="">
           友链
         </a>
         
-        <a href="../../about" class="">
+        <a href="../../../../about" class="">
           关于
         </a>
         
@@ -111,27 +116,27 @@
 
         <div class="nav">
           
-          <a href="../../index.html" class="">
+          <a href="../../../../index.html" class="">
             主页
           </a>
           
-          <a href="../../archives" class="current">
+          <a href="../../../../archives" class="">
             归档
           </a>
           
-          <a href="../../categories" class="">
+          <a href="../../../../categories" class="">
             分类
           </a>
           
-          <a href="../../tags" class="">
+          <a href="../../../../tags" class="">
             标签
           </a>
           
-          <a href="../../friends" class="">
+          <a href="../../../../friends" class="">
             友链
           </a>
           
-          <a href="../../about" class="">
+          <a href="../../../../about" class="">
             关于
           </a>
           
@@ -160,61 +165,161 @@
     </div>
     <div id="container">
       <div class="main animated bounceInRight delay-0.7s">
-        <div id="archives">
-    
-        <div class="title">
-            归档 
-             - 2022
-        </div>
-    
-
-
-
-
-    
-    
-    <section class="wrap">
-        <div class="meta">
-            <a href="" >
-                2022
-            </a>
-        </div>
-        <div class="year">
-            
-            <article class="item">
-            <a href="../../2022/06/09/start/" title="博客简介">
-                <span>2022/06/09</span>
-                <span>博客简介</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="../../2022/04/06/%E7%BB%A7%E6%89%BF%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0/" title="继承、初始化与虚函数">
-                <span>2022/04/06</span>
-                <span>继承、初始化与虚函数</span>
-            </a>
-            </article>
-            
-
-
-            <article class="item">
-            <a href="../../2022/04/05/c-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="c++内存管理">
-                <span>2022/04/05</span>
-                <span>c++内存管理</span>
-            </a>
-            </article>
-            
-    
-        </div>
-    </section>
+        <article class="post-entry">
+    <div class="header">
       
-<div class="paginator">
-    <span class="page-number current">1</span>
-</div>
-</div>
+      <div class="title">c++内存管理</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2022/04/05</span>
+        </span>
 
+        
+
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/cpp">cpp</a>
+                
+              
+                
+                  <a href="/categories/cpp11">cpp11</a>
+                
+              
+                
+                  <a href="/categories/散装cpp">散装cpp</a>
+                
+              
+          </span>
+        </span>
+        
+        
+         
+          <span class="item">
+            <span class="iconfont icon-tag1"></span>
+            <span>
+                
+                  
+                    <a href="/tags/cpp">cpp</a>
+                  
+                
+            </span>
+          </span>
+         
+      </div>
+      <div>
+      </div>
+    </div>
+    <html><head></head><body><h2 id="malloc"><strong><code>malloc()</code></strong><a class="post-anchor" href="#malloc"></a></h2><ul>
+<li><p>英语：<em>memory allocation</em></p>
+</li>
+<li><p>头文件： <code>&lt;stdlib.h&gt;</code></p>
+</li>
+<li><p>函数原型</p>
+<blockquote>
+<p><code>void* malloc (size_t size);//分配成功返回指针，分配失败返回NULL</code></p>
+</blockquote>
+<p>  返回值为<code>void*</code>要注意使用时强制转换类型</p>
+<p>  <span id="1"></span></p>
+<p>  <strong>例如</strong></p>
+<blockquote>
+<p><code>char*ptr = (char*)malloc(10);//分配10个字节的内存空间，用来存放字符</code></p>
+</blockquote>
+</li>
+<li><p>释放内存</p>
+<blockquote>
+<p><code>free(*变量名*)；</code></p>
+</blockquote>
+</li>
+<li><p>注意事项</p>
+<blockquote>
+<p>分配内存空间时储存字符串时，多分配一位储存字符串结尾的<code>\0</code>标识符</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/137.html">参考</a></p>
+</li>
+</ul>
+<h2 id="calloc"><strong><code>calloc()</code></strong><a class="post-anchor" href="#calloc"></a></h2><ul>
+<li>英语：<em>clear allocation</em></li>
+<li>头文件： <code>&lt;stdlib.h&gt;</code></li>
+<li>函数原型<blockquote>
+<p><code>void* calloc (size_t num, size_t size);//分配num个长size的空间且初始化为0，成功返回指针，失败返回NULL</code></p>
+</blockquote>
+</li>
+<li><a href="#1">释放内存&amp;注意事项</a></li>
+<li><a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/134.html">参考</a></li>
+</ul>
+<h2 id="size-t"><strong><code>size_t</code></strong><a class="post-anchor" href="#size-t"></a></h2><ul>
+<li>表示C语言中任何对象所能达到的最大长度，在32位系统中位<code>unsigned int</code>，在64位系统中为<code>unsigned long</code></li>
+</ul>
+<h2 id="new"><strong><code>new()</code></strong><a class="post-anchor" href="#new"></a></h2><ul>
+<li><p>头文件： <code>&lt;new&gt;</code></p>
+</li>
+<li><p>用法</p>
+<blockquote>
+<p><code>int *p = new int;</code><br>  <code>int p =*new int;</code><br>  定义单个变量<br>  <code>int *p = new int(x);</code><br>  定义变量并初始化为x;<br>  <code>delete p;</code><br>  释放单个变量空间<br><code>int*a = new int[5];</code><br>  定义数组，a可直接当作数组使用<br>  <code>delete []a;</code><br>  释放数组空间<br>  定义类型可以是用户自定义的类型</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xiaorenwuzyh/article/details/44514815">进阶</a></p>
+</li>
+</ul>
+</body></html>
+
+  
+    <div class="post-reward">
+    <div id="reward-button">打赏</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="../../../../images/zfb.png" target="_block" class="bg" style="background-image:url('/images/zfb.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="../../../../images/wx.png" target="_block" class="bg" style="background-image:url('/images/wx.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="../../06/%E7%BB%A7%E6%89%BF%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0/">继承、初始化与虚函数</a>
+        
+    </div>
+    <div class="item right">
+        
+    </div>
+  </div>
+
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="https://kotori.csd.moe">LunaSeki</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="https://kotori.csd.moe">https://kotori.csd.moe</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="https://kotori.csd.moe">LunaSeki</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+
+  
+  
+</article>
         <footer>
           <div class="copyright">
             ©2022

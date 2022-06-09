@@ -16,7 +16,7 @@
     <meta name="description" content="" />
     
     <title>
-      博客简介 - Hexo
+      继承、初始化与虚函数 - Hexo
     </title>
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
@@ -30,7 +30,7 @@
     
     <div id="post-toc" class="animated hiddenToc hide">
       <span class="title">Toc</span>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%99%E6%98%AFLunaSekii%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2"><span class="toc-text">这是LunaSekii的个人博客</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-text">技术栈</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="toc-text">类的继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-text">虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-text">纯虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E8%A1%A8"><span class="toc-text">参数初始化表</span></a></li></ol>
     </div>
     
     <div id="fixed-menu-wrap">
@@ -168,19 +168,34 @@
         <article class="post-entry">
     <div class="header">
       
-        <div class="top">
-          <div class="iconfont icon-zuirehotxiankuang animated infinite heartBeat"></div>
-        </div>
-      
-      <div class="title">博客简介</div>
+      <div class="title">继承、初始化与虚函数</div>
       <div class="meta">
         <span class="item">
           <span class="iconfont icon-time-circle"></span>
-          <span>2022/06/09</span>
+          <span>2022/04/06</span>
         </span>
 
         
 
+         
+        <span class="item">
+          <span class="iconfont icon-folder"></span>
+          <span>
+              
+                
+                  <a href="/categories/cpp">cpp</a>
+                
+              
+                
+                  <a href="/categories/cpp11">cpp11</a>
+                
+              
+                
+                  <a href="/categories/散装cpp">散装cpp</a>
+                
+              
+          </span>
+        </span>
         
         
          
@@ -192,26 +207,6 @@
                     <a href="/tags/cpp">cpp</a>
                   
                 
-                  
-                    <a href="/tags/c#">c#</a>
-                  
-                
-                  
-                    <a href="/tags/python">python</a>
-                  
-                
-                  
-                    <a href="/tags/html">html</a>
-                  
-                
-                  
-                    <a href="/tags/css">css</a>
-                  
-                
-                  
-                    <a href="/tags/js">js</a>
-                  
-                
             </span>
           </span>
          
@@ -219,17 +214,48 @@
       <div>
       </div>
     </div>
-    <html><head></head><body><p>这是个纯静态博客，没备案，没后端，有问题请通过<a href="mailto:LunaSeki@outlook.com?cc=LunaSekiii@gmail.com&amp;subject=问题反馈&amp;body=%0d%0a" style="color: orange">邮件</a>联系</p>
-<span id="more"></span>
+    <html><head></head><body><h2 id="类的继承">类的继承<a class="post-anchor" href="#类的继承"></a></h2><ul>
+<li><p>示例</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>{</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">int</span> a, b;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">fun</span><span class="params">()</span></span>{</span><br><span class="line">            <span class="keyword">return</span> a+b;</span><br><span class="line">        }</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        <span class="type">int</span> c, d;</span><br><span class="line">}</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">aClass</span>: <span class="keyword">public</span> base{<span class="comment">// &lt;继承方式1&gt;&lt;基类名1&gt;,&lt;继承方式2&gt;&lt;基类名2&gt;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">aFun</span><span class="params">()</span></span>{</span><br><span class="line">            <span class="keyword">return</span> c+d;</span><br><span class="line">        }</span><br><span class="line">    <span class="comment">//&lt;派生类类体&gt;</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>继承方式</p>
+<ul>
+<li>公有继承（<code>public</code>）：当一个类派生自公有基类时，基类的公有成员也是派生类的公有成员，基类的保护成员也是派生类的保护成员，基类的私有成员不能直接被派生类访问，但是可以通过调用基类的公有和保护成员来访问。</li>
+<li>保护继承（<code>protected</code>）： 当一个类派生自保护基类时，基类的公有和保护成员将成为派生类的保护成员。</li>
+<li>私有继承（<code>private</code>）：当一个类派生自私有基类时，基类的公有和保护成员将成为派生类的私有成员</li>
+</ul>
+</li>
+</ul>
+<h2 id="虚函数">虚函数<a class="post-anchor" href="#虚函数"></a></h2><ul>
+<li><p>示例</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">aClass</span>{</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">int</span> a;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">aFun</span><span class="params">()</span></span>{</span><br><span class="line">            retur  a;</span><br><span class="line">        }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>作用</p>
+<blockquote>
+<p>子类继承时可重新定义虚函数从而覆盖，并且通过基类指针<code>-&gt;</code>可以访问子类的该函数</p>
+</blockquote>
+<h2 id="纯虚函数">纯虚函数<a class="post-anchor" href="#纯虚函数"></a></h2></li>
+<li><p>示例</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">aClass</span>{</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="type">int</span> <span class="title">aFun</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>作用</p>
+<blockquote>
+<p>纯虚函数用于构造基类，将类留给子类定义</p>
+</blockquote>
+<h2 id="参数初始化表">参数初始化表<a class="post-anchor" href="#参数初始化表"></a></h2></li>
+<li><p>代码</p>
+  <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">VLA</span>{</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">const</span> <span class="type">int</span> m_len;</span><br><span class="line">        <span class="type">int</span> *m_arr;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">VLA</span>(<span class="type">int</span> len);</span><br><span class="line">    };</span><br><span class="line">    <span class="comment">//必须使用参数初始化表来初始化 m_len</span></span><br><span class="line">    VLA::<span class="built_in">VLA</span>(<span class="type">int</span> len): <span class="built_in">m_len</span>(len){</span><br><span class="line">        m_arr = <span class="keyword">new</span> <span class="type">int</span>[len];</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-<p><a href="./title.jpg" data-caption="title" data-fancybox="images"><img src="./title.jpg" alt="title"></a></p>
-<h2 id="这是LunaSekii的个人博客">这是LunaSekii的个人博客<a class="post-anchor" href="#这是LunaSekii的个人博客"></a></h2><blockquote>
-<p>主要学习方向是web前端，和c++算法等，也涉足后端（c#, python）等知识</p>
+<blockquote>
+<p><strong>重点</strong>：在编译器不允许数组的长度为变量时，可以自定义一个VLA类，实现自定义数组长度(<code>const</code>只能运用参数初始化表赋值）</p>
 </blockquote>
-<h2 id="技术栈">技术栈<a class="post-anchor" href="#技术栈"></a></h2><blockquote>
-<p><code>cpp</code>, <code>c#</code>, <code>html</code>, <code>css</code>, <code>js</code>, <code>python</code> 等</p>
+</li>
+<li><p>用法</p>
+<blockquote>
+<p>每个变量都用逗号隔开<br>  注意参数初始化表赋值顺序按照定义顺序而非参数初始化表的顺序</p>
 </blockquote>
-<p><a href="/test">导航页</a></p>
+</li>
+</ul>
 </body></html>
 
   
@@ -256,10 +282,12 @@
   <div class="post-guide">
     <div class="item left">
         
+          <a href="../../../06/09/start/">博客简介</a>
+        
     </div>
     <div class="item right">
         
-          <a href="../../../04/06/%E7%BB%A7%E6%89%BF%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E8%99%9A%E5%87%BD%E6%95%B0/">继承、初始化与虚函数</a>
+          <a href="../../05/c-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">c++内存管理</a>
         
     </div>
   </div>
